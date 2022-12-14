@@ -36,7 +36,6 @@ public class ShipMovement : NetworkBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     void Awake(){
@@ -58,7 +57,6 @@ public class ShipMovement : NetworkBehaviour
     void FixedUpdate()
     {
         if(IsLocalPlayer){
-            HandleMovement(roll1D, brake, thrustInput, pitchYaw);
             HandleMovementServerRpc(roll1D, brake, thrustInput, pitchYaw);
         }
     }
@@ -81,7 +79,6 @@ public class ShipMovement : NetworkBehaviour
             rb.AddRelativeForce(Vector3.forward  * currentThrust * Time.deltaTime);
         }
         Vector3 test = transform.InverseTransformDirection(rb.velocity);
-        print("Magnitude: "+rb.velocity.magnitude+" Velocity X: "+test.x+" Velocity Y:"+test.y+" Velocity Z:"+test.z);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         if(test.z > 0.1f){
             rb.AddRelativeForce(- dragCoefficient * new Vector3(test.x, test.y, 0), ForceMode.Force);

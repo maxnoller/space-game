@@ -1,18 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class ShipShoot : MonoBehaviour
+public class ShipShoot : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    PlayerControls playerControls;
+
+    void Awake(){
+        playerControls = new PlayerControls();
+        playerControls.Ship.PrimaryFire.performed += ctx => requestFireServerRpc();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
+    public override void OnNetworkSpawn(){
+        enabled = true;
+    }
+
+    void OnEnable(){
+        if(IsLocalPlayer)
+            playerControls.Ship.Enable();
+    }
+
+    void OnDisable(){
+        if(IsLocalPlayer)
+            playerControls.Ship.Disable();
+    }
+
+    void performFire(){
+        if(!IsServer) return;
+        ObjectPoolManager.Instance.GetObjectPool("RedLaserBullet")
+    }
+
+    [ServerRpc]
+    public void requestFireServerRpc(){
+        performFire();
     }
 }

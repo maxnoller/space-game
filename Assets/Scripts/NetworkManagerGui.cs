@@ -27,7 +27,6 @@ public class NetworkManagerGui : MonoBehaviour
             ushort.Parse(port.text)
         );
         NetworkManager.Singleton.StartClient();
-        NetworkManager.Singleton.SceneManager.LoadScene("space_battle", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     public void setupJoin(){
@@ -38,5 +37,22 @@ public class NetworkManagerGui : MonoBehaviour
     public void host(){
         NetworkManager.Singleton.StartHost();
         NetworkManager.Singleton.SceneManager.LoadScene("space_battle", UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
+
+
+    
+    void Start(){
+        string[] arguments = System.Environment.GetCommandLineArgs();
+        for (int i = 0; i < arguments.Length; i++)
+        {
+            if (arguments[i] == "-server")
+            {
+                Debug.Log("Starting server on port 7777");
+                Application.targetFrameRate = 60;
+                NetworkManager.Singleton.StartServer();
+                NetworkManager.Singleton.SceneManager.LoadScene("space_battle", UnityEngine.SceneManagement.LoadSceneMode.Single);
+            }
+        }
+
     }
 }
