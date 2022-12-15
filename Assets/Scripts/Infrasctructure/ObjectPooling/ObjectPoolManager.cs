@@ -28,6 +28,19 @@ public class ObjectPoolManager : MonoBehaviour
         return null;
     }
 
+    public void ReturnObjectToPool(string name, GameObject obj){
+        if(poolDictionary.ContainsKey(name)){
+            poolDictionary[name].ReturnObject(obj);
+        }
+    }
+
+    public GameObject GetObjectFromPool(string name){
+        if(poolDictionary.ContainsKey(name)){
+            return poolDictionary[name].GetObject();
+        }
+        return null;
+    }
+
 
      
 }

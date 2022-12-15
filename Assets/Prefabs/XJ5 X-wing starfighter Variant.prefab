@@ -145,7 +145,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 4.258721, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -990,6 +990,7 @@ GameObject:
   - component: {fileID: 4850472777611792759}
   - component: {fileID: 161134461696494886}
   - component: {fileID: 4689893472875348781}
+  - component: {fileID: 9024112567595899820}
   m_Layer: 0
   m_Name: XJ5 X-wing starfighter Variant
   m_TagString: Untagged
@@ -1217,6 +1218,10 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: aa56fbe6-1f05-4060-88b2-4bd178bd76d5
     m_ActionName: Ship/MouseControl[/Keyboard/space,/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae6d8286-3fb7-4f73-949e-38bba9c63c19
+    m_ActionName: Ship/PrimaryFire[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ship
@@ -1280,6 +1285,21 @@ MonoBehaviour:
   brakeFactor: 100
   rollDecay: 0.75
   dragCoefficient: 0.4
+--- !u!114 &9024112567595899820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515526800101417442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8110039368b93e347a94e1f7383de5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeedModifier: 10
+  bulletLifeTime: 15
+  weapons: {fileID: 500188126239776539}
 --- !u!1 &5926555593644067729
 GameObject:
   m_ObjectHideFlags: 0

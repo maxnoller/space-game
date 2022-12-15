@@ -10,6 +10,6 @@ public class SpaceGameApplication : MonoBehaviour
 
     void Start(){
         pool_manager = ObjectPoolManager.Instance;
-        pool_manager.CreatePool(redLaserBulletPrefab, 1000);
+        pool_manager.CreatePool(redLaserBulletPrefab, 10000);
     }
 }
