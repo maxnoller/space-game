@@ -1,0 +1,11 @@
+Model Information:
+* title:	Executor-class Star Dreadnought
+* source:	https://sketchfab.com/3d-models/executor-class-star-dreadnought-3c1ea6d00abd4865a62c32695a4aa5db
+* author:	lightwarrior (https://sketchfab.com/user3754564)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Executor-class Star Dreadnought" (https://sketchfab.com/3d-models/executor-class-star-dreadnought-3c1ea6d00abd4865a62c32695a4aa5db) by lightwarrior (https://sketchfab.com/user3754564) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

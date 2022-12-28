@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+namespace SpaceGame.Infrastructure{
 public class ObjectPoolManager : MonoBehaviour
 {
     [SerializeField]
@@ -43,4 +44,5 @@ public class ObjectPoolManager : MonoBehaviour
 
 
      
+}
 }

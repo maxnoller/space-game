@@ -1,0 +1,22 @@
+{
+    "name": "SpaceGame.Ship",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7f176893cec6d1e999cd6eee6239bf59",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:3b8ed52f1b5c64994af4c4e0aa4b6c4b",
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:653c5d94a372ab193b66c99fbcb59479",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:099ca82095b3a0538a06ef1743d447c9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

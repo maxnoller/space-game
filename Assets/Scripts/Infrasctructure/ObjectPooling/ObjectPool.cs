@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace SpaceGame.Infrastructure{
 public class ObjectPool : MonoBehaviour
 {
 
@@ -28,4 +29,5 @@ public class ObjectPool : MonoBehaviour
     }
 
 
+}
 }

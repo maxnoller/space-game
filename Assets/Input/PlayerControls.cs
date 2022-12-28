@@ -15,12 +15,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerControls : IInputActionCollection2, IDisposable
+namespace SpaceGame.Input
 {
-    public InputActionAsset asset { get; }
-    public @PlayerControls()
+    public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @PlayerControls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
@@ -112,6 +114,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""PrimaryFire"",
                     ""type"": ""Button"",
                     ""id"": ""ae6d8286-3fb7-4f73-949e-38bba9c63c19"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""86c8b905-223a-4322-9fa8-bb7714822715"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -338,195 +349,359 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""PrimaryFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""731e1f6d-0a9d-46d8-91fb-00a1c42b9051"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GalaxyMap"",
+            ""id"": ""95dcee5d-ffeb-42e1-a939-035da33e6275"",
+            ""actions"": [
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""e52f9fdf-7402-4805-badb-5baed747baf2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraZoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""55a22917-25f1-4b72-8550-74041a370de9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""36f4fed0-a73f-4952-b47f-aa6050d4284b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3307bd0a-6c4f-4920-bee4-11c3d71e70f7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""343400f2-feb5-42a8-b889-f6bdb300b7be"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9e9621f8-e5dd-4e30-9971-de69d38089e4"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""46db7d54-bd00-448f-b4a4-192a0b57fa28"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f72d5b7-f602-4d2d-abe4-7c48be699593"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Ship
-        m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
-        m_Ship_Roll = m_Ship.FindAction("Roll", throwIfNotFound: true);
-        m_Ship_Thrust = m_Ship.FindAction("Thrust", throwIfNotFound: true);
-        m_Ship_PitchYaw = m_Ship.FindAction("PitchYaw", throwIfNotFound: true);
-        m_Ship_Brake = m_Ship.FindAction("Brake", throwIfNotFound: true);
-        m_Ship_Strafe = m_Ship.FindAction("Strafe", throwIfNotFound: true);
-        m_Ship_CameraSide = m_Ship.FindAction("CameraSide", throwIfNotFound: true);
-        m_Ship_CameraUpDown = m_Ship.FindAction("CameraUpDown", throwIfNotFound: true);
-        m_Ship_CameraReset = m_Ship.FindAction("CameraReset", throwIfNotFound: true);
-        m_Ship_MouseControl = m_Ship.FindAction("MouseControl", throwIfNotFound: true);
-        m_Ship_PrimaryFire = m_Ship.FindAction("PrimaryFire", throwIfNotFound: true);
-    }
+            // Ship
+            m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
+            m_Ship_Roll = m_Ship.FindAction("Roll", throwIfNotFound: true);
+            m_Ship_Thrust = m_Ship.FindAction("Thrust", throwIfNotFound: true);
+            m_Ship_PitchYaw = m_Ship.FindAction("PitchYaw", throwIfNotFound: true);
+            m_Ship_Brake = m_Ship.FindAction("Brake", throwIfNotFound: true);
+            m_Ship_Strafe = m_Ship.FindAction("Strafe", throwIfNotFound: true);
+            m_Ship_CameraSide = m_Ship.FindAction("CameraSide", throwIfNotFound: true);
+            m_Ship_CameraUpDown = m_Ship.FindAction("CameraUpDown", throwIfNotFound: true);
+            m_Ship_CameraReset = m_Ship.FindAction("CameraReset", throwIfNotFound: true);
+            m_Ship_MouseControl = m_Ship.FindAction("MouseControl", throwIfNotFound: true);
+            m_Ship_PrimaryFire = m_Ship.FindAction("PrimaryFire", throwIfNotFound: true);
+            m_Ship_Select = m_Ship.FindAction("Select", throwIfNotFound: true);
+            // GalaxyMap
+            m_GalaxyMap = asset.FindActionMap("GalaxyMap", throwIfNotFound: true);
+            m_GalaxyMap_Camera = m_GalaxyMap.FindAction("Camera", throwIfNotFound: true);
+            m_GalaxyMap_CameraZoom = m_GalaxyMap.FindAction("CameraZoom", throwIfNotFound: true);
+        }
 
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-    public IEnumerable<InputBinding> bindings => asset.bindings;
-
-    public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
-    {
-        return asset.FindAction(actionNameOrId, throwIfNotFound);
-    }
-    public int FindBinding(InputBinding bindingMask, out InputAction action)
-    {
-        return asset.FindBinding(bindingMask, out action);
-    }
-
-    // Ship
-    private readonly InputActionMap m_Ship;
-    private IShipActions m_ShipActionsCallbackInterface;
-    private readonly InputAction m_Ship_Roll;
-    private readonly InputAction m_Ship_Thrust;
-    private readonly InputAction m_Ship_PitchYaw;
-    private readonly InputAction m_Ship_Brake;
-    private readonly InputAction m_Ship_Strafe;
-    private readonly InputAction m_Ship_CameraSide;
-    private readonly InputAction m_Ship_CameraUpDown;
-    private readonly InputAction m_Ship_CameraReset;
-    private readonly InputAction m_Ship_MouseControl;
-    private readonly InputAction m_Ship_PrimaryFire;
-    public struct ShipActions
-    {
-        private @PlayerControls m_Wrapper;
-        public ShipActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Roll => m_Wrapper.m_Ship_Roll;
-        public InputAction @Thrust => m_Wrapper.m_Ship_Thrust;
-        public InputAction @PitchYaw => m_Wrapper.m_Ship_PitchYaw;
-        public InputAction @Brake => m_Wrapper.m_Ship_Brake;
-        public InputAction @Strafe => m_Wrapper.m_Ship_Strafe;
-        public InputAction @CameraSide => m_Wrapper.m_Ship_CameraSide;
-        public InputAction @CameraUpDown => m_Wrapper.m_Ship_CameraUpDown;
-        public InputAction @CameraReset => m_Wrapper.m_Ship_CameraReset;
-        public InputAction @MouseControl => m_Wrapper.m_Ship_MouseControl;
-        public InputAction @PrimaryFire => m_Wrapper.m_Ship_PrimaryFire;
-        public InputActionMap Get() { return m_Wrapper.m_Ship; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ShipActions set) { return set.Get(); }
-        public void SetCallbacks(IShipActions instance)
+        public void Dispose()
         {
-            if (m_Wrapper.m_ShipActionsCallbackInterface != null)
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+        public IEnumerable<InputBinding> bindings => asset.bindings;
+
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+        {
+            return asset.FindAction(actionNameOrId, throwIfNotFound);
+        }
+        public int FindBinding(InputBinding bindingMask, out InputAction action)
+        {
+            return asset.FindBinding(bindingMask, out action);
+        }
+
+        // Ship
+        private readonly InputActionMap m_Ship;
+        private IShipActions m_ShipActionsCallbackInterface;
+        private readonly InputAction m_Ship_Roll;
+        private readonly InputAction m_Ship_Thrust;
+        private readonly InputAction m_Ship_PitchYaw;
+        private readonly InputAction m_Ship_Brake;
+        private readonly InputAction m_Ship_Strafe;
+        private readonly InputAction m_Ship_CameraSide;
+        private readonly InputAction m_Ship_CameraUpDown;
+        private readonly InputAction m_Ship_CameraReset;
+        private readonly InputAction m_Ship_MouseControl;
+        private readonly InputAction m_Ship_PrimaryFire;
+        private readonly InputAction m_Ship_Select;
+        public struct ShipActions
+        {
+            private @PlayerControls m_Wrapper;
+            public ShipActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Roll => m_Wrapper.m_Ship_Roll;
+            public InputAction @Thrust => m_Wrapper.m_Ship_Thrust;
+            public InputAction @PitchYaw => m_Wrapper.m_Ship_PitchYaw;
+            public InputAction @Brake => m_Wrapper.m_Ship_Brake;
+            public InputAction @Strafe => m_Wrapper.m_Ship_Strafe;
+            public InputAction @CameraSide => m_Wrapper.m_Ship_CameraSide;
+            public InputAction @CameraUpDown => m_Wrapper.m_Ship_CameraUpDown;
+            public InputAction @CameraReset => m_Wrapper.m_Ship_CameraReset;
+            public InputAction @MouseControl => m_Wrapper.m_Ship_MouseControl;
+            public InputAction @PrimaryFire => m_Wrapper.m_Ship_PrimaryFire;
+            public InputAction @Select => m_Wrapper.m_Ship_Select;
+            public InputActionMap Get() { return m_Wrapper.m_Ship; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ShipActions set) { return set.Get(); }
+            public void SetCallbacks(IShipActions instance)
             {
-                @Roll.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
-                @Roll.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
-                @Roll.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
-                @Thrust.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
-                @Thrust.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
-                @Thrust.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
-                @PitchYaw.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
-                @PitchYaw.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
-                @PitchYaw.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
-                @Brake.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
-                @Brake.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
-                @Brake.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
-                @Strafe.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
-                @Strafe.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
-                @Strafe.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
-                @CameraSide.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
-                @CameraSide.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
-                @CameraSide.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
-                @CameraUpDown.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
-                @CameraUpDown.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
-                @CameraUpDown.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
-                @CameraReset.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
-                @CameraReset.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
-                @CameraReset.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
-                @MouseControl.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
-                @MouseControl.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
-                @MouseControl.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
-                @PrimaryFire.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
-                @PrimaryFire.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
-                @PrimaryFire.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
-            }
-            m_Wrapper.m_ShipActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Roll.started += instance.OnRoll;
-                @Roll.performed += instance.OnRoll;
-                @Roll.canceled += instance.OnRoll;
-                @Thrust.started += instance.OnThrust;
-                @Thrust.performed += instance.OnThrust;
-                @Thrust.canceled += instance.OnThrust;
-                @PitchYaw.started += instance.OnPitchYaw;
-                @PitchYaw.performed += instance.OnPitchYaw;
-                @PitchYaw.canceled += instance.OnPitchYaw;
-                @Brake.started += instance.OnBrake;
-                @Brake.performed += instance.OnBrake;
-                @Brake.canceled += instance.OnBrake;
-                @Strafe.started += instance.OnStrafe;
-                @Strafe.performed += instance.OnStrafe;
-                @Strafe.canceled += instance.OnStrafe;
-                @CameraSide.started += instance.OnCameraSide;
-                @CameraSide.performed += instance.OnCameraSide;
-                @CameraSide.canceled += instance.OnCameraSide;
-                @CameraUpDown.started += instance.OnCameraUpDown;
-                @CameraUpDown.performed += instance.OnCameraUpDown;
-                @CameraUpDown.canceled += instance.OnCameraUpDown;
-                @CameraReset.started += instance.OnCameraReset;
-                @CameraReset.performed += instance.OnCameraReset;
-                @CameraReset.canceled += instance.OnCameraReset;
-                @MouseControl.started += instance.OnMouseControl;
-                @MouseControl.performed += instance.OnMouseControl;
-                @MouseControl.canceled += instance.OnMouseControl;
-                @PrimaryFire.started += instance.OnPrimaryFire;
-                @PrimaryFire.performed += instance.OnPrimaryFire;
-                @PrimaryFire.canceled += instance.OnPrimaryFire;
+                if (m_Wrapper.m_ShipActionsCallbackInterface != null)
+                {
+                    @Roll.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
+                    @Roll.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
+                    @Roll.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnRoll;
+                    @Thrust.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
+                    @Thrust.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
+                    @Thrust.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnThrust;
+                    @PitchYaw.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
+                    @PitchYaw.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
+                    @PitchYaw.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnPitchYaw;
+                    @Brake.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
+                    @Brake.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
+                    @Brake.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnBrake;
+                    @Strafe.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
+                    @Strafe.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
+                    @Strafe.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnStrafe;
+                    @CameraSide.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
+                    @CameraSide.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
+                    @CameraSide.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraSide;
+                    @CameraUpDown.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
+                    @CameraUpDown.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
+                    @CameraUpDown.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraUpDown;
+                    @CameraReset.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
+                    @CameraReset.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
+                    @CameraReset.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnCameraReset;
+                    @MouseControl.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
+                    @MouseControl.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
+                    @MouseControl.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnMouseControl;
+                    @PrimaryFire.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
+                    @PrimaryFire.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
+                    @PrimaryFire.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnPrimaryFire;
+                    @Select.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnSelect;
+                    @Select.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnSelect;
+                    @Select.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnSelect;
+                }
+                m_Wrapper.m_ShipActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Roll.started += instance.OnRoll;
+                    @Roll.performed += instance.OnRoll;
+                    @Roll.canceled += instance.OnRoll;
+                    @Thrust.started += instance.OnThrust;
+                    @Thrust.performed += instance.OnThrust;
+                    @Thrust.canceled += instance.OnThrust;
+                    @PitchYaw.started += instance.OnPitchYaw;
+                    @PitchYaw.performed += instance.OnPitchYaw;
+                    @PitchYaw.canceled += instance.OnPitchYaw;
+                    @Brake.started += instance.OnBrake;
+                    @Brake.performed += instance.OnBrake;
+                    @Brake.canceled += instance.OnBrake;
+                    @Strafe.started += instance.OnStrafe;
+                    @Strafe.performed += instance.OnStrafe;
+                    @Strafe.canceled += instance.OnStrafe;
+                    @CameraSide.started += instance.OnCameraSide;
+                    @CameraSide.performed += instance.OnCameraSide;
+                    @CameraSide.canceled += instance.OnCameraSide;
+                    @CameraUpDown.started += instance.OnCameraUpDown;
+                    @CameraUpDown.performed += instance.OnCameraUpDown;
+                    @CameraUpDown.canceled += instance.OnCameraUpDown;
+                    @CameraReset.started += instance.OnCameraReset;
+                    @CameraReset.performed += instance.OnCameraReset;
+                    @CameraReset.canceled += instance.OnCameraReset;
+                    @MouseControl.started += instance.OnMouseControl;
+                    @MouseControl.performed += instance.OnMouseControl;
+                    @MouseControl.canceled += instance.OnMouseControl;
+                    @PrimaryFire.started += instance.OnPrimaryFire;
+                    @PrimaryFire.performed += instance.OnPrimaryFire;
+                    @PrimaryFire.canceled += instance.OnPrimaryFire;
+                    @Select.started += instance.OnSelect;
+                    @Select.performed += instance.OnSelect;
+                    @Select.canceled += instance.OnSelect;
+                }
             }
         }
-    }
-    public ShipActions @Ship => new ShipActions(this);
-    public interface IShipActions
-    {
-        void OnRoll(InputAction.CallbackContext context);
-        void OnThrust(InputAction.CallbackContext context);
-        void OnPitchYaw(InputAction.CallbackContext context);
-        void OnBrake(InputAction.CallbackContext context);
-        void OnStrafe(InputAction.CallbackContext context);
-        void OnCameraSide(InputAction.CallbackContext context);
-        void OnCameraUpDown(InputAction.CallbackContext context);
-        void OnCameraReset(InputAction.CallbackContext context);
-        void OnMouseControl(InputAction.CallbackContext context);
-        void OnPrimaryFire(InputAction.CallbackContext context);
+        public ShipActions @Ship => new ShipActions(this);
+
+        // GalaxyMap
+        private readonly InputActionMap m_GalaxyMap;
+        private IGalaxyMapActions m_GalaxyMapActionsCallbackInterface;
+        private readonly InputAction m_GalaxyMap_Camera;
+        private readonly InputAction m_GalaxyMap_CameraZoom;
+        public struct GalaxyMapActions
+        {
+            private @PlayerControls m_Wrapper;
+            public GalaxyMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Camera => m_Wrapper.m_GalaxyMap_Camera;
+            public InputAction @CameraZoom => m_Wrapper.m_GalaxyMap_CameraZoom;
+            public InputActionMap Get() { return m_Wrapper.m_GalaxyMap; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(GalaxyMapActions set) { return set.Get(); }
+            public void SetCallbacks(IGalaxyMapActions instance)
+            {
+                if (m_Wrapper.m_GalaxyMapActionsCallbackInterface != null)
+                {
+                    @Camera.started -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCamera;
+                    @Camera.performed -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCamera;
+                    @Camera.canceled -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCamera;
+                    @CameraZoom.started -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCameraZoom;
+                    @CameraZoom.performed -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCameraZoom;
+                    @CameraZoom.canceled -= m_Wrapper.m_GalaxyMapActionsCallbackInterface.OnCameraZoom;
+                }
+                m_Wrapper.m_GalaxyMapActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Camera.started += instance.OnCamera;
+                    @Camera.performed += instance.OnCamera;
+                    @Camera.canceled += instance.OnCamera;
+                    @CameraZoom.started += instance.OnCameraZoom;
+                    @CameraZoom.performed += instance.OnCameraZoom;
+                    @CameraZoom.canceled += instance.OnCameraZoom;
+                }
+            }
+        }
+        public GalaxyMapActions @GalaxyMap => new GalaxyMapActions(this);
+        public interface IShipActions
+        {
+            void OnRoll(InputAction.CallbackContext context);
+            void OnThrust(InputAction.CallbackContext context);
+            void OnPitchYaw(InputAction.CallbackContext context);
+            void OnBrake(InputAction.CallbackContext context);
+            void OnStrafe(InputAction.CallbackContext context);
+            void OnCameraSide(InputAction.CallbackContext context);
+            void OnCameraUpDown(InputAction.CallbackContext context);
+            void OnCameraReset(InputAction.CallbackContext context);
+            void OnMouseControl(InputAction.CallbackContext context);
+            void OnPrimaryFire(InputAction.CallbackContext context);
+            void OnSelect(InputAction.CallbackContext context);
+        }
+        public interface IGalaxyMapActions
+        {
+            void OnCamera(InputAction.CallbackContext context);
+            void OnCameraZoom(InputAction.CallbackContext context);
+        }
     }
 }
