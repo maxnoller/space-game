@@ -14,10 +14,6 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-JsonDotNet/
-TextMesh Pro/
-Sketchfab For Unity/
-
 *.blob
 
 # MemoryCaptures can get excessive in size.
